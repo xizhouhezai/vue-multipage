@@ -4,6 +4,10 @@
 
 <script>
 export default {
-  
+  methods: {
+    handle: () => {
+      console.log()
+    }
+  },
 }
 </script>
