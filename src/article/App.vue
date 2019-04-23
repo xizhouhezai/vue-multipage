@@ -1,12 +1,18 @@
 <template>
-  <p>这里是文章页</p>
+  <div>
+    <p>这里是文章页</p>
+    <router-link to="/article">to article</router-link>
+    <br>
+    <router-link to="/category">to category</router-link>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 export default {
   methods: {
     handle: () => {
-      console.log()
+      window.console.log(1111)
     }
   },
 }
