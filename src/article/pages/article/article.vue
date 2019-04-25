@@ -7,9 +7,6 @@
 
 <script>
 export default {
-  created() {
-    window.console.log(this.$loc)
-  },
   methods: {
     back() {
       this.$loc.open({
