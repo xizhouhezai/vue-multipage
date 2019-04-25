@@ -4,6 +4,8 @@
     <router-link to="/article">to article</router-link>
     <br>
     <router-link to="/category">to category</router-link>
+    <br>
+    <router-link to="/upload">to upload</router-link>
     <router-view></router-view>
   </div>
 </template>
