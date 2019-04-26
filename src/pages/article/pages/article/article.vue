@@ -11,6 +11,11 @@ export default {
     back() {
       this.$loc.open({
         page: 'index',
+        path: '/home',
+        params: {
+          page: 1,
+          id: 54
+        }
       });
     }
   },

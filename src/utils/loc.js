@@ -6,19 +6,36 @@ export default class Loc {
     const self = this
     const baseUrl = window.location.origin
     Vue.prototype.$loc = {
+      /**
+       * @ open 多页面跳转，暂时只支持hash路由
+       * @ config Object {page, path, params} page要跳转的页面，path要跳转页面的路由，params路由参数
+       */
       open(config) {
-        let url
-        let { page, path } = config
-        // window.console.log(page, path, params)
+        let url = ''
+        let { page, path, params } = config
+
         if (!self.options[page]) {
           return
         }
+
         url = baseUrl + '/' + self.options[page].filename
+        window.console.log(window.location.hash)
         if (path) {
           if (window.location.hash) {
-            url += url + window.location.hash + path
+            url = url + '#' + path
           }
         }
+
+        let str = '?'
+        if (typeof params === 'object') {
+          Object.keys(params).forEach(key => {
+            str += key + '=' + params[key] + '&'
+          })
+        }
+
+        str = str.slice(0, str.length - 1)     
+        url = url + str
+
         window.location.href = url
       }
     }
