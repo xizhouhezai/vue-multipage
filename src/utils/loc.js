@@ -8,7 +8,7 @@ export default class Loc {
     Vue.prototype.$loc = {
       /**
        * @ open 多页面跳转，暂时只支持hash路由
-       * @ config Object {page, path, params} page要跳转的页面，path要跳转页面的路由，params路由参数
+       * @ config Object {page, path, params} page要跳转的页面name，path要跳转页面的路由，params路由参数
        */
       open(config) {
         let url = ''
