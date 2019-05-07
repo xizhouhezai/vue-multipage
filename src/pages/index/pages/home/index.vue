@@ -6,5 +6,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+    // this.$storage.setItem('user', {name: 'Tom'})
+    window.console.log(this.$http)
+    this.$http.get('login', {name: 'zhangsan', password: 123456})
+  }
+}
 </script>
