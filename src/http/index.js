@@ -1,42 +1,71 @@
 import axios from 'axios'
 
 const service = axios.create({
-  baseURL: 'localhost:3333/v1',
+  baseURL: 'http://localhost:3333/v1',
   timeout: 5000
-})
-
-service.interceptors.request.use(config => {
-  window.console.log(config);
 })
 
 export default class Http {
   constructor(options) {
     this.options = options
-    window.console.log(this.options)
   }
 
   install(Vue) {
     let self = this
+    service.interceptors.request.use(async config => {
+      window.console.log(config)
+      let storage = Vue.prototype.$storage
+      if (config.data.auth === 'required') {
+        let user = await storage.getItem('user')
+        if (!user) {
+          window.location.href = '#/login'
+        } else {
+          config.headers.authorization = 'Bearer ' + user.token
+        }
+      }
+      window.console.log(config)
+      return config;
+    }, err => {
+      window.console.log(err)
+    })
     Vue.prototype.$http = {
       get(name, data) {
-        window.console.log(111)
-        self.getUrl(name, data)
-        // return Promise((resolve, reject) => {
-        //   axios.get(url, data).then(res => {
-        //     resolve(res)
-        //   }, err => {
-        //     reject(err)
-        //   })
-        // })
+        window.console.log(data)
+        let params = {}
+        if (data) {
+          params = data
+        }
+        let {url, api} = self.getUrl(name)
+        // window.console.log(api)
+        return new Promise((resolve, reject) => {
+          service.get(url, {params: params, data: api}).then(res => {
+            resolve(res)
+          }, err => {
+            reject(err)
+          })
+        })
       },
-      post() {}
+      post(name, data) {
+        let {url, api} = self.getUrl(name)
+        return new Promise((resolve, reject) => {
+          service.post(url, data, {data: api}).then(res => {
+            resolve(res)
+          }, err => {
+            reject(err)
+          })
+        })
+      }
     }
   }
-  getUrl(name, data) {
+  getUrl(name) {
     let tempOptions = this.options
-    let tempData = data
-    window.console.log(name)
     window.console.log(tempOptions)
-    window.console.log(tempData)
+    let url;
+
+    let api = tempOptions.apis.filter(item => item.name === name)
+    window.console.log(api)
+    url = api[0].path
+
+    return {url, api: api[0]}
   }
 }

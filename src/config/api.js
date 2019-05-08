@@ -3,8 +3,18 @@ const apiConfig = {
     {
       path: '/login',
       name: 'login',
-      auth: 'required'
-    }
+      auth: 'not',
+    },
+    {
+      path: '/articles',
+      name: 'article',
+      auth: 'required',
+    },
+    {
+      path: '/auth',
+      name: 'auth',
+      auth: 'not',
+    },
   ]
 }
 

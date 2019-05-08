@@ -9,6 +9,16 @@
 export default {
   methods: {
     login() {
+      this.auth()
+    },
+    async auth() {
+      let res = await this.$http.post('auth', {
+        name: 'zhangsan'
+      })
+      window.console.log(res)
+      this.$storage.setItem('user', {
+        token: res.data.token
+      })
       this.$router.push('/home')
     }
   }
