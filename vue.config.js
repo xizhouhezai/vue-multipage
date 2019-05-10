@@ -16,5 +16,12 @@ module.exports = {
       filename: 'article.html',
       title: 'Article Page',
     }
+  },
+
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: []
+    }
   }
 }

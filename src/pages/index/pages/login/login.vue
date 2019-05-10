@@ -19,7 +19,7 @@ export default {
       this.$storage.setItem('user', {
         token: res.data.token
       })
-      this.$router.push('/home')
+      this.$router.push('/shijing')
     }
   }
 }

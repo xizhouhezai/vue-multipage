@@ -4,13 +4,14 @@ import Router from "vue-router"
 import Home from "../pages/home"
 import Login from "../pages/login/login"
 import ShiJing from "../pages/shijing/shijing"
+import Article from "../pages/shijing/content"
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/home',
+      path: '/',
       component: Home
     },
     {
@@ -19,7 +20,11 @@ export default new Router({
     },
     {
       path: '/shijing',
-      component: ShiJing
+      component: ShiJing,
+    },
+    {
+      path: '/shijing/article',
+      component: Article,
     }
   ]
 })

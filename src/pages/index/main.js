@@ -1,12 +1,7 @@
 import Vue from 'vue'
-import iView from 'iview'
 import App from './App.vue'
 import router from './router'
-import 'ant-design-vue/dist/antd.css'
 
-Vue.use(iView)
-
-import 'iview/dist/styles/iview.css'
 import Loc from '@/utils/loc'
 import Storage from '@/utils/storage'
 import Http from '@/http'
