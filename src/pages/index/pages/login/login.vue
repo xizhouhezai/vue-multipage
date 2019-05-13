@@ -6,7 +6,12 @@
 </template>
 
 <script>
+import { Button } from 'ant-design-vue'
+
 export default {
+  mounted() {
+    this.$http.get('article')
+  },
   methods: {
     login() {
       this.auth()
@@ -19,8 +24,11 @@ export default {
       this.$storage.setItem('user', {
         token: res.data.token
       })
-      this.$router.push('/shijing')
+      this.$router.push('/')
     }
+  },
+  components: {
+    Button
   }
 }
 </script>

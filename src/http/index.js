@@ -12,10 +12,10 @@ export default class Http {
 
   install(Vue) {
     let self = this
+    // 请求前统一处理
     service.interceptors.request.use(async config => {
-      window.console.log(config)
       let storage = Vue.prototype.$storage
-      if (config.data.auth === 'required') {
+      if (config.api.auth === 'required') {
         let user = await storage.getItem('user')
         if (!user) {
           window.location.href = '#/login'
@@ -23,14 +23,18 @@ export default class Http {
           config.headers.authorization = 'Bearer ' + user.token
         }
       }
-      window.console.log(config)
       return config;
-    }, err => {
+    })
+    // 返回统一处理
+    service.interceptors.response.use(async config => {
+      window.console.log(config)
+      return config
+    }, (err, data) => {
       window.console.log(err)
+      window.console.log(data)
     })
     Vue.prototype.$http = {
       get(name, data) {
-        window.console.log(data)
         let params = {}
         if (data) {
           params = data
@@ -38,17 +42,20 @@ export default class Http {
         let {url, api} = self.getUrl(name)
         // window.console.log(api)
         return new Promise((resolve, reject) => {
-          service.get(url, {params: params, data: api}).then(res => {
-            resolve(res)
-          }, err => {
-            reject(err)
-          })
+          try {
+            service.get(url, {params: params, api: api}).then(res => {
+              resolve(res)
+            })
+          } catch (error) {
+            reject(error)
+            window.console.log(error)
+          }
         })
       },
       post(name, data) {
         let {url, api} = self.getUrl(name)
         return new Promise((resolve, reject) => {
-          service.post(url, data, {data: api}).then(res => {
+          service.post(url, data, {api: api}).then(res => {
             resolve(res)
           }, err => {
             reject(err)
@@ -59,7 +66,6 @@ export default class Http {
   }
   getUrl(name) {
     let tempOptions = this.options
-    window.console.log(tempOptions)
     let url;
 
     let api = tempOptions.apis.filter(item => item.name === name)

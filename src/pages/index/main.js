@@ -9,6 +9,8 @@ import Http from '@/http'
 const { pages } = require('../../../vue.config')
 import apiConfig from '@/config/api'
 
+import 'ant-design-vue/dist/antd.css'
+
 Vue.use(new Loc(pages))
 Vue.use(new Storage())
 Vue.use(new Http(apiConfig))
