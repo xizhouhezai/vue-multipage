@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const service = axios.create({
-  baseURL: 'http://localhost:3333/v1',
+  // baseURL: 'http://localhost:3333/v1',
+  baseURL: 'http://rap2api.taobao.org/app/mock/167115/v1',
   timeout: 5000
 })
 

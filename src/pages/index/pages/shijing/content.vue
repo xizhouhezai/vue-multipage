@@ -1,10 +1,12 @@
 <template>
-  <div class="content">
-    <div>{{ title }}</div>
-    <div v-for="(item, index) in content" :key="index">
-      <p>{{ item }}</p>
+  <transition name="slide-fade">
+    <div class="content">
+      <div>{{ title }}</div>
+      <div v-for="(item, index) in content" :key="index">
+        <p>{{ item }}</p>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -26,3 +28,22 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: left 3s;
+}
+.slide-fade-enter {
+  left: 0%;
+}
+.slide-fade-enter-to {
+  left: 100%;
+}
+.slide-fade-leave {
+  left: 100%;
+}
+.slide-fade-leave-to {
+  left: 0;
+}
+</style>
