@@ -17,7 +17,7 @@ export default {
       this.auth()
     },
     async auth() {
-      let res = await this.$http.post('auth', {
+      let res = await this.$http.get('auth', {
         name: 'zhangsan'
       })
       window.console.log(res)
