@@ -1,12 +1,10 @@
 <template>
-  <transition name="slide-fade">
-    <div class="content">
-      <div>{{ title }}</div>
-      <div v-for="(item, index) in content" :key="index">
-        <p>{{ item }}</p>
-      </div>
+  <div class="content">
+    <div>{{ title }}</div>
+    <div v-for="(item, index) in content" :key="index">
+      <p>{{ item }}</p>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>

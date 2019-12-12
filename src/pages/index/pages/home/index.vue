@@ -9,7 +9,7 @@ import { Button } from 'ant-design-vue'
 
 export default {
   mounted() {
-    this.$http.get('article')
+    this.$router.push('/shijing')
   },
   methods: {
     open() {

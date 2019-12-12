@@ -1,22 +1,20 @@
 <template>
-  <transition name="slide-fade" mode="out-in">
-    <div class="shijing">
-      <div class="box" v-for="(item, index) in data" :key="index" @click="select(item)">
-        <div class="left">
-          <p class="title">{{ (index + 1) + "." + item.title }}</p>
-          <div>
-            <span>{{ item.chapter }} </span>
-            <span>{{ item.section }}</span>
-          </div>
-        </div>
-        <div class="right">
-          <img src="@/assets/shijing.jpg">
-          <span class="mask-title">{{ item.title }}</span>
+  <div class="shijing">
+    <div class="box" v-for="(item, index) in data" :key="index" @click="select(item)">
+      <div class="left">
+        <p class="title">{{ (index + 1) + "." + item.title }}</p>
+        <div>
+          <span>{{ item.chapter }} </span>
+          <span>{{ item.section }}</span>
         </div>
       </div>
-      <div class="more" @click="more">查看更多</div>
+      <div class="right">
+        <img src="@/assets/shijing.jpg">
+        <span class="mask-title">{{ item.title }}</span>
+      </div>
     </div>
-  </transition>
+    <div class="more" @click="more">查看更多</div>
+  </div>
 </template>
 
 <script>
@@ -67,6 +65,7 @@ export default {
   width: 100%;
   padding: 5px 10px;
   border-bottom: 1px solid #eeeeee;
+  cursor: pointer;
 }
 .left {
   flex: 1;
@@ -93,6 +92,7 @@ export default {
 .more {
   height: 40px;
   line-height: 40px;
+  cursor: pointer;
 }
 
 .slide-fade-enter-active,
