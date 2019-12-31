@@ -1,41 +1,67 @@
 <template>
   <div class="shijing">
-    <div class="box" v-for="(item, index) in data" :key="index" @click="select(item)">
-      <div class="left">
-        <p class="title">{{ (index + 1) + "." + item.title }}</p>
-        <div>
-          <span>{{ item.chapter }} </span>
-          <span>{{ item.section }}</span>
+    <div>
+      <div class="box" v-for="(item, index) in data" :key="index" @click="select(item)">
+        <div class="left">
+          <p class="title">{{ (index + 1) + "." + item.title }}</p>
+          <div>
+            <span>{{ item.chapter }} </span>
+            <span>{{ item.section }}</span>
+          </div>
+        </div>
+        <div class="right">
+          <img src="@/assets/shijing.jpg">
+          <span class="mask-title">{{ item.title }}</span>
         </div>
       </div>
-      <div class="right">
-        <img src="@/assets/shijing.jpg">
-        <span class="mask-title">{{ item.title }}</span>
-      </div>
+      <div class="more" @click="more">查看更多</div>
     </div>
-    <div class="more" @click="more">查看更多</div>
+    <div class="loading" v-if="loading">
+      <Spin size="large" />
+    </div>
   </div>
 </template>
 
 <script>
-import shijing from "@/assets/shijing.json"
+import { Spin } from 'ant-design-vue'
+
+// import shijing from "@/assets/shijing.json"
 
 export default {
   data() {
     return {
-      listData: shijing,
+      listData: [],
       page: 0,
       count: 10,
-      data: []
+      data: [],
+      loading: false,
     }
   },
+  created() {
+    this.loading = true
+  },
   mounted() {
-    this.more()
+    window.console.log('111111111111111111111111111111')
     // let temp = this.listData.slice(this.page, (this.page + 1) * this.count)
     // this.data = temp
-    window.console.log(shijing)
+  },
+  watch: {
+    loading() {
+      if (this.loading) {
+        this.getData()
+      }
+    },
+    listData() {
+      this.loading = false
+    },
   },
   methods: {
+    getData() {
+      window.console.log('2222222222222222222222222222222222')
+      this.listData = require('@/assets/shijing.json')
+      window.console.log('333333333333333333333333333333333333333')
+      this.more()
+    },
     more() {
       if ((this.page + 1) * this.count >= this.listData.length) {
         return
@@ -47,6 +73,9 @@ export default {
     select(item) {
       this.$router.push(`/shijing/article?title=${item.title}&chapter=${item.chapter}`)
     }
+  },
+  components: {
+    Spin
   }
 }
 </script>
@@ -95,20 +124,14 @@ export default {
   cursor: pointer;
 }
 
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: left 3s;
+.loading {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.slide-fade-enter {
-  left: 0%;
-}
-.slide-fade-enter-to {
-  left: 100%;
-}
-.slide-fade-leave {
-  left: 100%;
-}
-.slide-fade-leave-to {
-  left: 0;
+.loading .el-icon-loading {
+  color: blue;
+  font-size: 30px;
 }
 </style>

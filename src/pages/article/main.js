@@ -9,6 +9,10 @@ import Api from '@/config/api'
 
 const { pages } = require('../../../vue.config')
 
+import animated from 'animate.css'
+
+Vue.use(animated)
+
 Vue.use(new Loc(pages))
 Vue.use(new Http(Api))
 

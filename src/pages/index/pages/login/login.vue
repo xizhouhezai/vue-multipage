@@ -14,7 +14,10 @@ export default {
   },
   methods: {
     login() {
-      this.auth()
+      this.$loc.open({
+        page: 'article',
+        path: '/article',
+      });
     },
     async auth() {
       let res = await this.$http.get('auth', {
