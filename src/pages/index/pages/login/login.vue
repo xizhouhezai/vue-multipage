@@ -14,13 +14,16 @@ export default {
   },
   methods: {
     login() {
-      this.auth()
+      this.$loc.open({
+        page: 'article',
+        path: '/article',
+      });
     },
     async auth() {
-      // let res = await this.$http.post('auth', {
-      //   name: 'zhangsan'
-      // })
-      // window.console.log(res)
+      let res = await this.$http.get('auth', {
+        name: 'zhangsan'
+      })
+      window.console.log(res)
       this.$storage.setItem('user', {
         token: '1111111111'
       })
