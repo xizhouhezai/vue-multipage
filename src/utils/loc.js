@@ -11,6 +11,7 @@ export default class Loc {
        * @ config Object {page, path, params} page要跳转的页面name，path要跳转页面的路由，params路由参数
        */
       open(config) {
+        window.console.log('22222222222222', config)
         let url = ''
         let { page, path, params } = config
 

@@ -1,22 +1,20 @@
 <template>
-  <transition name="slide-fade" mode="out-in">
-    <div class="shijing">
-      <div class="box" v-for="(item, index) in data" :key="index" @click="select(item)">
-        <div class="left">
-          <p class="title">{{ (index + 1) + "." + item.title }}</p>
-          <div>
-            <span>{{ item.chapter }} </span>
-            <span>{{ item.section }}</span>
-          </div>
-        </div>
-        <div class="right">
-          <img src="@/assets/shijing.jpg">
-          <span class="mask-title">{{ item.title }}</span>
+  <div class="shijing">
+    <div class="box" v-for="(item, index) in data" :key="index" @click="select(item)">
+      <div class="left">
+        <p class="title">{{ (index + 1) + "." + item.title }}</p>
+        <div>
+          <span>{{ item.chapter }} </span>
+          <span>{{ item.section }}</span>
         </div>
       </div>
-      <div class="more" @click="more">查看更多</div>
+      <div class="right">
+        <img src="@/assets/shijing.jpg">
+        <span class="mask-title">{{ item.title }}</span>
+      </div>
     </div>
-  </transition>
+    <div class="more" @click="more">查看更多</div>
+  </div>
 </template>
 
 <script>
@@ -28,7 +26,7 @@ export default {
       listData: shijing,
       page: 0,
       count: 10,
-      data: []
+      data: [],
     }
   },
   mounted() {
@@ -38,6 +36,11 @@ export default {
     window.console.log(shijing)
   },
   methods: {
+    // getData() {
+    //   this.$ajax.get(url).then((data) => {
+    //     this.data = data
+    //   })
+    // },
     more() {
       if ((this.page + 1) * this.count >= this.listData.length) {
         return
@@ -93,22 +96,5 @@ export default {
 .more {
   height: 40px;
   line-height: 40px;
-}
-
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: left 3s;
-}
-.slide-fade-enter {
-  left: 0%;
-}
-.slide-fade-enter-to {
-  left: 100%;
-}
-.slide-fade-leave {
-  left: 100%;
-}
-.slide-fade-leave-to {
-  left: 0;
 }
 </style>

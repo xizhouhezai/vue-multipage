@@ -10,19 +10,19 @@ import { Button } from 'ant-design-vue'
 
 export default {
   mounted() {
-    this.$http.get('article')
+    // this.$http.get('article')
   },
   methods: {
     login() {
       this.auth()
     },
     async auth() {
-      let res = await this.$http.post('auth', {
-        name: 'zhangsan'
-      })
-      window.console.log(res)
+      // let res = await this.$http.post('auth', {
+      //   name: 'zhangsan'
+      // })
+      // window.console.log(res)
       this.$storage.setItem('user', {
-        token: res.data.token
+        token: '1111111111'
       })
       this.$router.push('/')
     }
