@@ -2,7 +2,7 @@
   <div id="app">
     <router-view></router-view>
     <div class="footer">
-      <a href="http://www.beian.gov.cn" target="_blank">皖ICP备18026327</a>
+      <a href="http://beian.miit.gov.cn" target="_blank">皖ICP备18026327号-1</a>
       <span>Copyright 2019 by xizhouhezai</span>
     </div>
   </div>

@@ -45,6 +45,10 @@ export default new Router({
         {
           path: '/firework',
           component: () => import('../pages/firework/index')
+        },
+        {
+          path: '/game/pixi',
+          component: () => import('../pages/game/pixi')
         }
       ]
     }
